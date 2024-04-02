@@ -67,7 +67,22 @@ class Player:
         
         
 class Attributes:  # WORK IN PROGRESS
-    pass 
+    def __init__(self, ID, name, attribute):
+        self.ID = ID
+        self.name = name
+        self.attribute = attribute
+        
+    def __str__(self):
+        return f"Attribute: {self.attribute}, Name: {self.name}"
+    
+    def create_mammals():
+    # Create a list of mammals, sorted by weight so the selection can be based on dice roll
+        return [
+            Attributes(ID=1, name="Yllätyskyykky", attribute="Löydä uusi noppa pöksyistäsi!"),
+            Attributes(), # Add here as many as we like...
+        ]
+        
+
     
 def main():
     # Create players
