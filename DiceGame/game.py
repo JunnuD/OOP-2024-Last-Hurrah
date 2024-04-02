@@ -82,7 +82,18 @@ class Attributes:  # WORK IN PROGRESS
             Attributes(), # Add here as many as we like...
         ]
         
+    def select_attribute_for_player(player, attribute):
+    # Roll two dices to determine the pet
+    dice1, dice2 = Dice(), Dice()
+    roll_sum = dice1.roll() + dice2.roll()
+    print(f"{player.name} rolled a {roll_sum} selecting a attribute.") # THIS IS WRONG NOW
 
+    # Select a attribute based on the dice roll, mapping the roll sum to the list of attributes
+    
+    selected_index = min(roll_sum-2, len(attribute)-1)  # -2 because minimum roll sum is 2, and we adjust for list index
+    selected_pet = attribute[selected_index]
+    player.set_attribute(selected_pet)
+    print(f"{player.name} now has a pet: {selected_attribute}")
     
 def main():
     # Create players
