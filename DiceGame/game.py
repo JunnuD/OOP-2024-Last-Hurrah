@@ -40,17 +40,17 @@ class Game:
             Player(input(f"Give the players {i+1} name: ")) for i in range(num_players)] # Make sure the amount of players wanted will come
         self.dice = [Dice(), Dice()] # Each player has two dices to throw and three rounds in total
         self.attribute_map = {
-            2: ("Suprise Squat", 5),
-            3: ("Warm Hand", 10),
-            4: ("Bees!", 15),
+            2: ("Alien Attack", 55),    # Here is the attribute - point list
+            3: ("Warm Hand", 45),       # If the double dice roll is quite common you will get an common attribute and not so many points
+            4: ("Bees!", 35),           # If the double dice roll is more unique you will score larger points and get more rare attributes
             5: ("Smashed Potatoes", 20),
-            6: ("Broken Fishrod", 25),
-            7: ("Bigfoot Toe", 30),
-            8: ("Fell Over", 35),
-            9: ("Marika's Lectures", 40),
-            10: ("Alien Attack", 45),
+            6: ("Broken Fishrod", 5),
+            7: ("Fell Over", 5),
+            8: ("New lecture with Marika about Project Management", 10),
+            9: ("Bigfoot Sighting", 20),
+            10: ("Suprise Squat", 35),
             11: ("New Porsche", 50),
-            12: ("Yo Mama!", 55)
+            12: ("Yo Mama- jokes!", 55)
         }
 
     def roll_dices_and_assign_attribute(self, player):
