@@ -8,4 +8,14 @@ attributes.py for the Attributes class.
 
 
 
+You have some interaction between Player and Dice, but 
+consider enhancing this by possibly adding more complex interactions 
+or dependencies. For example, you could add a Game class that manages rounds 
+and players.
+
+
+inheritance missing...
+
+To get this started...
+
 pip install colorama tabulate
