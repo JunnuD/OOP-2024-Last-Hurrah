@@ -1,4 +1,4 @@
-# Object Oriented Programming 2024 - Last Hurrah 
+# Object Oriented Programming 2024 - Last Hurrah - Dice Game
 # Authors: Junnu Danhammer & Aarni Kaartokallio
 
 import random
@@ -8,12 +8,13 @@ from tabulate import tabulate
 init()
 
 
-class Dice:
+class Dice: # This Class represent a 6-sided dice
     def roll(self):
+        """Simulating the dice roll and returning a value from 1-6"""
         return random.randint(1, 6)
 
 
-class Player:
+class Player: # This Class creates the Player which has a name, list of attributes and the score
     def __init__(self, name):
         self.name = name
         self.attributes = []
@@ -31,14 +32,16 @@ class Player:
 
 
 class Game:
+    """Represents a dice-rolling game for multiple players, including game attributes and rounds."""
+    
     def __init__(self):
         num_players = int(input("How many players: "))
         self.players = [
-            Player(input(f"Give the players {i+1} name: ")) for i in range(num_players)]
-        self.dice = [Dice(), Dice()]
+            Player(input(f"Give the players {i+1} name: ")) for i in range(num_players)] # Make sure the amount of players wanted will come
+        self.dice = [Dice(), Dice()] # Each player has two dices to throw and three rounds in total
         self.attribute_map = {
             2: ("Suprise Squat", 5),
-            3: ("Harm Hand", 10),
+            3: ("Warm Hand", 10),
             4: ("Bees!", 15),
             5: ("Smashed Potatoes", 20),
             6: ("Broken Fishrod", 25),
@@ -67,7 +70,7 @@ class Game:
                 self.roll_dices_and_assign_attribute(player)
             else:
                 print(
-                    f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye {Style.RESET_ALL}")
+                    f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {Style.RESET_ALL}")
 
     def play(self):
         print(f"{Fore.CYAN}Game is starting! Each player gets three (3) tries to roll dice.\n{Style.RESET_ALL}")
