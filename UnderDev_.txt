@@ -1,21 +1,4 @@
-Your current code includes multiple classes (Dice, Player, Attributes). 
-This is good, but to better adhere to the idea of multiple modules, 
-consider splitting these classes into separate Python files. 
-For example:
-dice.py for the Dice class.
-player.py for the Player class.
-attributes.py for the Attributes class.
-
-
-
-You have some interaction between Player and Dice, but 
-consider enhancing this by possibly adding more complex interactions 
-or dependencies. For example, you could add a Game class that manages rounds 
-and players.
-
+Classes.py own file and import all of that to the game.py
 
 inheritance missing...
 
-To get this started...
-
-pip install colorama tabulate
