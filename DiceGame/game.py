@@ -2,116 +2,85 @@
 # Authors: Junnu Danhammer & Aarni Kaartokallio
 
 import random
+from colorama import Fore, Style, init
+from tabulate import tabulate
+
+init()
+
 
 class Dice:
-    def __init__(self):
-        self.value = 0  # Initial value before the first roll
-
     def roll(self):
-        self.value = random.randint(1, 6)
-        return self.value
+        return random.randint(1, 6)
 
-def roll_all_dices(dices):
-    return [dice.roll() for dice in dices]
 
-def show_dice_values(dice_values):
-    for i, value in enumerate(dice_values, start=1):
-        print(f"Rolled number for dice {i}: {value}")
-
-def tiebreaker(dices):
-    print("Tiebreaker initiated...")
-    while True:
-        dice_values = roll_all_dices(dices)
-        show_dice_values(dice_values)
-        if len(set(dice_values)) == 1:  # If there's still a tie, roll again
-            print("Tie in tiebreaker, rolling again...\n")
-        else:
-            winner_dice = dice_values.index(max(dice_values)) + 1
-            print(f"Tiebreaker winner is dice {winner_dice} with value {max(dice_values)}\n")
-            break
-
-def play_game():
-    num_dice = int(input("Enter the number of dice: "))
-    dices = [Dice() for _ in range(num_dice)]
-
-    total_round_sums = []
-    for round_number in range(1, 4):  # 3 rounds
-        print(f"\nRound {round_number}")
-        dice_values = roll_all_dices(dices)
-        round_sum = sum(dice_values)
-        total_round_sums.append(round_sum)
-        show_dice_values(dice_values)
-        print(f"Round sum: {round_sum}")
-
-    # Check for tie after all rounds are completed
-    if len(set(total_round_sums)) == 1:  # Indicates a tie
-        tiebreaker(dices)
-    else:
-        max_sum = max(total_round_sums)
-        winner_round = total_round_sums.index(max_sum) + 1
-        print(f"\nWinner is found in round {winner_round} with the highest sum: {max_sum}")
-
-       
 class Player:
-    def __init__(self, name, player_id):
+    def __init__(self, name):
         self.name = name
-        self.player_id = player_id
-        self.dice = Dice()  # Each player has one dice
-        self.pet = None  # Will be set in Part 5
-    
-    def roll_dice(self):
-        return self.dice.roll()
-    
-    def set_pet(self, pet):
-        self.pet = pet
-    
+        self.attributes = []
+        self.score = 0
+
+    def add_attribute(self, attribute, points):
+        self.attributes.append(attribute)
+        self.score += points
+        print(
+            f"{Fore.GREEN}{self.name} got: {attribute} and {points} points {Style.RESET_ALL}")
+
     def __str__(self):
-        return f"Player {self.player_id}: {self.name}, Pet: {self.pet}"
-        
-        
-class Attributes:  # WORK IN PROGRESS
-    def __init__(self, ID, name, attribute):
-        self.ID = ID
-        self.name = name
-        self.attribute = attribute
-        
-    def __str__(self):
-        return f"Attribute: {self.attribute}, Name: {self.name}"
-    
-    def create_attributes():
-    # Create a list of attributes,  selection can be based on dice roll
-        return [
-            Attributes(ID=1, name="Yllätyskyykky", attribute="Löydä uusi noppa pöksyistäsi!"),
-            Attributes(), # Add here as many as we like...
-        ]
-        
-    def select_attribute_for_player(player, attribute):
-    # Roll two dices to determine the pet
-    dice1, dice2 = Dice(), Dice()
-    roll_sum = dice1.roll() + dice2.roll()
-    print(f"{player.name} rolled a {roll_sum} selecting a attribute.") # THIS IS WRONG NOW
+        attributes_str = ", ".join(self.attributes)
+        return f"{self.name} : {attributes_str}, Points: {self.score}"
 
-    # Select a attribute based on the dice roll, mapping the roll sum to the list of attributes
-    
-    selected_index = min(roll_sum-2, len(attribute)-1)  # -2 because minimum roll sum is 2, and we adjust for list index
-    selected_pet = attribute[selected_index]
-    player.set_attribute(selected_pet)
-    print(f"{player.name} now has a pet: {selected_attribute}")
-    
-def main():
-    # Create players
-    players = [Player("Alice", 1), Player("Bob", 2)]
 
-    # Create attributes WORK IN PROGRESS
-    Attributes = create_attribute()
+class Game:
+    def __init__(self):
+        num_players = int(input("How many players: "))
+        self.players = [
+            Player(input(f"Give the players {i+1} name: ")) for i in range(num_players)]
+        self.dice = [Dice(), Dice()]
+        self.attribute_map = {
+            2: ("Suprise Squat", 5),
+            3: ("Harm Hand", 10),
+            4: ("Bees!", 15),
+            5: ("Smashed Potatoes", 20),
+            6: ("Broken Fishrod", 25),
+            7: ("Bigfoot Toe", 30),
+            8: ("Fell Over", 35),
+            9: ("Marika's Lectures", 40),
+            10: ("Alien Attack", 45),
+            11: ("New Porsche", 50),
+            12: ("Yo Mama!", 55)
+        }
 
-    # Assign a attribute to each player WORK IN PROGRESS
-    for player in players:
-        select_attribute_for_player(player, Attributes)
+    def roll_dices_and_assign_attribute(self, player):
+        input(
+            f"{Fore.YELLOW}Press Enter to throw dice {player.name}...{Style.RESET_ALL}")
+        roll_sum = sum(dice.roll() for dice in self.dice)
+        attribute_name, points = self.attribute_map.get(
+            roll_sum, ("Nothing", 0))
+        print(f"{player.name} threw {roll_sum} and got: {attribute_name}.")
+        player.add_attribute(attribute_name, points)
 
-    # Print out each player and their attribute information WORK IN PROGRESS
-    for player in players:
-        print(player)
+    def play_round(self):
+        for player in self.players:
+            choice = input(
+                f"{Fore.BLUE}Does {player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
+            if choice == 'yes':
+                self.roll_dices_and_assign_attribute(player)
+            else:
+                print(
+                    f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye {Style.RESET_ALL}")
+
+    def play(self):
+        print(f"{Fore.CYAN}Game is starting! Each player gets three (3) tries to roll dice.\n{Style.RESET_ALL}")
+        for round in range(1, 4):
+            print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
+            self.play_round()
+        print(f"\n{Fore.CYAN}Games Outcome:{Style.RESET_ALL}")
+        headers = ["Player", "Attributes", "Points"]
+        data = [(player.name, ", ".join(player.attributes), player.score)
+                for player in self.players]
+        print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
+
 
 if __name__ == "__main__":
-    main()
+    game = Game()
+    game.play()
