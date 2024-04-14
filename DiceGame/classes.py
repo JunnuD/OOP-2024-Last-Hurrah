@@ -6,7 +6,11 @@ init()  # Initialize colorama
 
 
 class GameEntity:
-    """Base class for all game entities."""
+    """ Base class for all game entities. Inheritance is utilized in this game to enhance design clarity and scalability. 
+        By establishing a 'GameEntity' base class, we lay a foundational framework that future game components can extend. 
+        This approach streamlines enhancements and maintenance, demonstrating robust application of object-oriented programming principles.
+    """
+
 
     def __init__(self, name):
         self.name = name
