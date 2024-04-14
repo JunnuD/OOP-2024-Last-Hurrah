@@ -22,6 +22,7 @@ g. Some interaction/relationship between classes (association)
 h. Inheritance
 i. Objects passed as function arguments
 j. Integration of data structure (list, tuple, dictionary, etc.)
+k. Polymorphism
 
 
 Others
