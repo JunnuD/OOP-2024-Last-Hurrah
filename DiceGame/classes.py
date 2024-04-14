@@ -33,7 +33,8 @@ class Player(GameEntity):  # Inherits from GameEntity
     def add_attribute(self, attribute, points):
         self.attributes.append(attribute)
         self.score += points
-        print(f"{Fore.GREEN}{self.name} got: {attribute} and {points} points {Style.RESET_ALL}")
+        print(f"{Fore.GREEN}{self.name} got: {attribute} and {
+              points} points {Style.RESET_ALL}")
 
     def __str__(self):
         attributes_str = ", ".join(self.attributes)
@@ -63,7 +64,8 @@ class Game:
         }
 
     def roll_dices_and_assign_attribute(self, player):
-        input(f"{Fore.YELLOW}Press Enter to throw dice {player.name}...{Style.RESET_ALL}")
+        input(f"{Fore.YELLOW}Press Enter to throw dice {
+              player.name}...{Style.RESET_ALL}")
         roll_sum = sum(dice.roll() for dice in self.dice)
         attribute_name, points = self.attribute_map.get(
             roll_sum, ("Nothing", 0))
@@ -72,14 +74,17 @@ class Game:
 
     def play_round(self):
         for player in self.players:
-            choice = input(f"{Fore.BLUE}Does {player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
+            choice = input(f"{Fore.BLUE}Does {
+                           player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
             if choice == 'yes':
                 self.roll_dices_and_assign_attribute(player)
             else:
-                print(f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {Style.RESET_ALL}")
+                print(f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {
+                      Style.RESET_ALL}")
 
     def play(self):
-        print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!.\n{Style.RESET_ALL}")
+        print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!.\n{
+              Style.RESET_ALL}")
         for round in range(1, 4):
             print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
@@ -88,8 +93,3 @@ class Game:
         data = [(player.name, ", ".join(player.attributes), player.score)
                 for player in self.players]
         print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
-
-
-if __name__ == "__main__":
-    game = Game()
-    game.play()
