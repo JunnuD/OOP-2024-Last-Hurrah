@@ -1,3 +1,5 @@
+# Authors: Junnu Danhammer & Aarni Kaartokallio
+
 import random
 
 class Dice:
@@ -75,8 +77,8 @@ class Attributes:  # WORK IN PROGRESS
     def __str__(self):
         return f"Attribute: {self.attribute}, Name: {self.name}"
     
-    def create_mammals():
-    # Create a list of mammals, sorted by weight so the selection can be based on dice roll
+    def create_attributes():
+    # Create a list of attributes,  selection can be based on dice roll
         return [
             Attributes(ID=1, name="Yllätyskyykky", attribute="Löydä uusi noppa pöksyistäsi!"),
             Attributes(), # Add here as many as we like...
@@ -100,7 +102,7 @@ def main():
     players = [Player("Alice", 1), Player("Bob", 2)]
 
     # Create attributes WORK IN PROGRESS
-    mammals = create_attribute()
+    Attributes = create_attribute()
 
     # Assign a attribute to each player WORK IN PROGRESS
     for player in players:

@@ -1,0 +1,10 @@
+Your current code includes multiple classes (Dice, Player, Attributes). 
+This is good, but to better adhere to the idea of multiple modules, 
+consider splitting these classes into separate Python files. 
+For example:
+dice.py for the Dice class.
+player.py for the Player class.
+attributes.py for the Attributes class.
+
+
+

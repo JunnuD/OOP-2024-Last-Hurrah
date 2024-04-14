@@ -15,3 +15,6 @@ f.	At least one part of the work modeled using UML class diagram
 g.	Some interaction/relationship between classes (association)
 h.	Inheritance
 i.	Objects passed as function arguments
+
+
+Subject wil be dice roll game to add all of the above mentioned aspects.
