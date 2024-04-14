@@ -1,4 +1,0 @@
-Classes.py own file and import all of that to the game.py
-
-inheritance missing...
-
