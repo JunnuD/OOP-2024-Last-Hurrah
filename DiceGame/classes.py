@@ -10,8 +10,6 @@ class GameEntity:
         By establishing a 'GameEntity' base class, we lay a foundational framework that future game components can extend. 
         This approach streamlines enhancements and maintenance, demonstrating robust application of object-oriented programming principles.
     """
-
-
     def __init__(self, name):
         self.name = name
 
