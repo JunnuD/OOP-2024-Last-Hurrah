@@ -1,3 +1,4 @@
+# Object Oriented Programming 2024 - Last Hurrah 
 # Authors: Junnu Danhammer & Aarni Kaartokallio
 
 import random
