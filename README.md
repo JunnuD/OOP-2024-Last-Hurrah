@@ -35,3 +35,8 @@ That is total of 30 points
 
 In addition you will get 10 points from the presentation
 Total is 40 points
+
+
+To get this started on this game!
+
+pip install colorama tabulate
