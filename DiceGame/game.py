@@ -72,8 +72,8 @@ class Game:
                 print(
                     f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {Style.RESET_ALL}")
 
-    def play(self):
-        print(f"{Fore.CYAN}Game is starting! Each player gets three (3) tries to roll dice.\n{Style.RESET_ALL}")
+    def play(self): # Play the game!
+        print(f"{Fore.CYAN}Game is starting! There is three (3) rounds to roll dices!.\n{Style.RESET_ALL}")
         for round in range(1, 4):
             print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
@@ -84,6 +84,6 @@ class Game:
         print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": # Start the program
     game = Game()
     game.play()
