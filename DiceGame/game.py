@@ -2,7 +2,7 @@ import random
 from colorama import Fore, Style, init
 from tabulate import tabulate
 
-init()  # Initialize colorama
+init()
 
 
 class Dice:
@@ -14,11 +14,11 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.attributes = []
-        self.score = 0  # Initialize score to zero
+        self.score = 0
 
     def add_attribute(self, attribute, points):
         self.attributes.append(attribute)
-        self.score += points  # Add points to score
+        self.score += points
         print(
             f"{Fore.GREEN}{self.name} sai: {attribute} ja {points} pistettä{Style.RESET_ALL}")
 

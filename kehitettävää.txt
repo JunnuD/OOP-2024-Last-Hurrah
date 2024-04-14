@@ -8,3 +8,4 @@ attributes.py for the Attributes class.
 
 
 
+pip install colorama tabulate
