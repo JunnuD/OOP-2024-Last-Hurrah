@@ -2,7 +2,7 @@ import random
 from colorama import Fore, Style, init
 from tabulate import tabulate
 
-init()  # Initialize colorama
+init()  # Initialize colorama and tabulate
 
 
 class GameEntity:
