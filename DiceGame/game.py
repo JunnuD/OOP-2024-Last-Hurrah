@@ -9,7 +9,7 @@ Attributes range from 'Alien Attack' to 'Yo Mama- jokes!', with points reflectin
 The game utilizes the 'colorama' library for colored terminal text and 'tabulate' for displaying tabulated game outcomes.
 
 """
-from classes import Player, Dice, Game
+from classes import Game
 
 if __name__ == "__main__":  # Start the program
     game = Game()
