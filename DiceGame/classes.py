@@ -83,7 +83,7 @@ class Game:
     def play(self):
         print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!.\n{Style.RESET_ALL}")
         for round in range(1, 4):
-            print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
+            print(f"\n{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
         print(f"\n{Fore.CYAN}Games Outcome:{Style.RESET_ALL}")
         headers = ["Player", "Attributes", "Points"]
