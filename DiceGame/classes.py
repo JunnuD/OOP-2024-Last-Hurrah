@@ -54,14 +54,14 @@ class Game:
             2: ("Alien Attack", 55),
             3: ("Warm Hand", 45),
             4: ("Bees!", 35),
-            5: ("Smashed Potatoes", 20),
+            5: ("Smashed Potatoes", 25),
             6: ("Broken Fishrod", 5),
-            7: ("Fell Over", 5),
-            8: ("New lecture with Marika about Project Management", 10),
-            9: ("Bigfoot Sighting", 20),
+            7: ("Fell Over", 7),
+            8: ("New lecture with Marika about Project Management", 15),
+            9: ("Bigfoot Sighting", 23),
             10: ("Suprise Squat", 35),
             11: ("New Porsche", 50),
-            12: ("Yo Mama- jokes!", 55)
+            12: ("Yo Mama- jokes!", 60)
         }
 
     def roll_dices_and_assign_attribute(self, player):
