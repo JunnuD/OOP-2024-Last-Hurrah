@@ -74,11 +74,16 @@ class Game:
 
     def play_round(self):
         for player in self.players:
-            choice = input(f"{Fore.BLUE}Does {player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
-            if choice == 'yes':
-                self.roll_dices_and_assign_attribute(player)
-            else:
-                print(f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {Style.RESET_ALL}")
+            while True:
+                choice = input(f"{Fore.BLUE}Does {player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
+                if choice == 'yes':
+                    self.roll_dices_and_assign_attribute(player)
+                    break # Break if answer is valid
+                elif choice == 'no':
+                    print(f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {Style.RESET_ALL}")
+                    break # Break if answer is valid
+                else:
+                    print(f"{Fore.RED}Invalid input! Please enter 'Yes' or 'No' {Style.RESET_ALL}")
 
     def play(self): 
         print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!\nAll players will roll two dices if they want to and the sum of those will give you an attribute which has points!{Style.RESET_ALL}")
