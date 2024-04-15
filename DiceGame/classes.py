@@ -84,6 +84,7 @@ class Game:
                     break # Break if answer is valid
                 else:
                     print(f"{Fore.RED}Invalid input! Please enter 'Yes' or 'No' {Style.RESET_ALL}")
+                    # Keep looping if input is invalid...
 
     def play(self):
         print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!\nAll players will roll two dices if they want to and the sum of those will give you an attribute which has points!{Style.RESET_ALL}")
@@ -101,7 +102,9 @@ class Game:
         print(f"\n{Fore.CYAN}Games Outcome:{Style.RESET_ALL}")
         headers = ["Player", "Attributes", "Points"]
         data = [(player.name, ", ".join(player.attributes), player.score) for player in self.players]
-        print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
+        sorted_data = sorted(data, key=lambda x: x[2], reverse=True)
+
+        print(tabulate(sorted_data, headers=headers, tablefmt="fancy_grid")) # Make the scoreboard be in descending order.
 
         # Announce winners
         if len(winners) > 1:
