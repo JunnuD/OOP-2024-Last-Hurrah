@@ -80,8 +80,8 @@ class Game:
             else:
                 print(f"{Fore.RED}{player.name} Went to take care of the chickens and got salmonella in his eye. Whoops. {Style.RESET_ALL}")
 
-    def play(self):
-        print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!.\n{Style.RESET_ALL}")
+    def play(self): # Maybe tässä nyt joku ongelma kun kiukuttelee. Lisäsin tekstiä ja f string alko kitiseen. Nyt näyttää olevan ok mut herjaa syntax error
+        print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!\nAll players will roll two dices if they want to and the sum of those will give you an attribute which has points!{Style.RESET_ALL}")
         for round in range(1, 4):
             print(f"\n{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
