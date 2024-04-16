@@ -2,7 +2,7 @@ import random
 from colorama import Fore, Style, init
 from tabulate import tabulate
 
-init()  # Initialize colorama for colored console output
+init()  # Initialize colorama
 
 
 class GameEntity:
@@ -35,16 +35,17 @@ class MagicDice(Dice):
     """A magical dice that doubles the score on a roll of 6."""
 
     def roll(self):
-        roll = super().roll()  # Call the roll method of the base class
-        if roll >= 2:
+        print(f"{Fore.MAGENTA}Rolling magic dice...{Style.RESET_ALL}")
+        roll = super().roll()
+        if roll == 6:
             print(f"{Fore.RED}Magic dice rolled a six! Double points on this turn!{
                   Style.RESET_ALL}")
-            return 12  # Represents doubled value of 6
+            return 12  # Doubled value for scoring purposes
         return roll
 
 
 class Player(GameEntity):
-    """Class to create a player with a name, list of attributes, and a score."""
+    """Class to create a player with a name, list of attributes, and score."""
 
     def __init__(self, name):
         super().__init__(name)
@@ -79,23 +80,23 @@ class Game:
             6: ("Broken Fishrod", 5),
             7: ("Fell Over", 5),
             8: ("New lecture with Marika about Project Management", 10),
-            9: ("Bigfoot Sighting", 20),
-            10: ("Surprise Squat", 35),
+            9: ("Bigfoot Sighting at Kupittaa", 20),
+            10: ("Suprise Squat", 35),
             11: ("New Porsche", 50),
             12: ("Yo Mama- jokes!", 55),
-            # Added for potential high rolls with Magic Dice
-            13: ("Lucky Day at Heidi's", 60),
+            13: ("Lucky Day", 60),
             14: ("Winning Lottery", 65),
-            15: ("Found Treasure from pants", 70),
+            15: ("Found Treasure", 70),
             16: ("Moon Landing", 75),
             17: ("Discovered Atlantis from Aurajoki", 80),
-            # Maximum score for double sixes from Magic Dice
-            18: ("Time Travel to first year as a Tiko", 100)
+            18: ("Time Travel back to the 90's", 100)
         }
 
     def roll_dices_and_assign_attribute(self, player):
-        dice = random.choice(self.dice)  # Randomly select a dice
-        roll_sum = dice.roll()  # Roll the selected dice
+        # Randomly select two dice from the dice pool
+        selected_dice = random.sample(self.dice, 2)
+        roll_sum = sum(d.roll()
+                       for d in selected_dice)  # Roll each selected dice
         attribute_name, points = self.attribute_map.get(
             roll_sum, ("Nothing", 0))
         print(f"{player.name} threw {roll_sum} and got: {attribute_name}.")
@@ -103,13 +104,18 @@ class Game:
 
     def play_round(self):
         for player in self.players:
-            choice = input(f"{Fore.BLUE}Does {
-                           player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
+            while True:  # Keep asking until a valid input is given
+                choice = input(f"{Fore.BLUE}Does {
+                    player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
+                if choice == 'yes' or choice == 'no':
+                    break  # Break the loop if the input is valid
+                print(f"{Fore.RED}Invalid input. Please type 'Yes' or 'No'.{
+                    Style.RESET_ALL}")
             if choice == 'yes':
                 self.roll_dices_and_assign_attribute(player)
             else:
                 print(f"{Fore.RED}{player.name} opted out of rolling the dice.{
-                      Style.RESET_ALL}")
+                    Style.RESET_ALL}")
 
     def play(self):
         print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!{
