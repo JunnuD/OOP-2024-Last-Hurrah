@@ -41,8 +41,7 @@ class MagicDice(Dice):
         print(f"{Fore.MAGENTA}Rolling magic dice...{Style.RESET_ALL}")
         roll = super().roll()
         if roll == 6:
-            print(f"{Fore.RED}Magic dice rolled a six! Double points on this turn!{
-                  Style.RESET_ALL}")
+            print(f"{Fore.RED}Magic dice rolled a six! Double points on this turn!{Style.RESET_ALL}")
             return 12  # Doubled value for scoring purposes
         return roll
 
@@ -58,8 +57,7 @@ class Player(GameEntity):
     def add_attribute(self, attribute, points):
         self.attributes.append(attribute)
         self.score += points
-        print(f"{Fore.GREEN}{self.name} got: {attribute} and {
-              points} points{Style.RESET_ALL}")
+        print(f"{Fore.GREEN}{self.name} got: {attribute} and {points} points{Style.RESET_ALL}")
 
     def __str__(self):
         attributes_str = ", ".join(self.attributes)
@@ -74,13 +72,11 @@ class Game:
             try:
                 num_players = int(input("How many players: "))
                 if num_players < 1:
-                    print(f"{Fore.RED}Please enter a number greater than 0.{
-                          Style.RESET_ALL}")
+                    print(f"{Fore.RED}Please enter a number greater than 0.{Style.RESET_ALL}")
                     continue
                 break
             except ValueError:
-                print(f"{Fore.RED}Invalid input. Please enter a valid number.{
-                      Style.RESET_ALL}")
+                print(f"{Fore.RED}Invalid input. Please enter a valid number.{Style.RESET_ALL}")
 
         self.players = [
             Player(input(f"Give player {i+1} name: ")) for i in range(num_players)]
@@ -106,8 +102,7 @@ class Game:
         }
 
     def roll_dices_and_assign_attribute(self, player):
-        input(f"{Fore.YELLOW}Press Enter to throw dices for {
-              player.name}...{Style.RESET_ALL}")
+        input(f"{Fore.YELLOW}Press Enter to throw dices for {player.name}...{Style.RESET_ALL}")
         selected_dice = random.sample(self.dice, 2)  # Randomly select two dice
         roll_sum = sum(d.roll()
                        for d in selected_dice)
@@ -119,21 +114,17 @@ class Game:
     def play_round(self):
         for player in self.players:
             while True:  # Keep asking until a valid input is given
-                choice = input(f"{Fore.BLUE}Does {
-                               player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
+                choice = input(f"{Fore.BLUE}Does {player.name} want to throw dice? (Yes/No) {Style.RESET_ALL}").strip().lower()
                 if choice == 'yes' or choice == 'no':
                     break  # Break the loop if the input is valid
-                print(f"{Fore.RED}Invalid input. Please type 'Yes' or 'No'.{
-                      Style.RESET_ALL}")
+                print(f"{Fore.RED}Invalid input. Please type 'Yes' or 'No'.{Style.RESET_ALL}")
             if choice == 'yes':
                 self.roll_dices_and_assign_attribute(player)
             else:
-                print(f"{Fore.RED}{player.name} opted out of rolling the dice.{
-                      Style.RESET_ALL}")
+                print(f"{Fore.RED}{player.name} opted out of rolling the dice.{Style.RESET_ALL}")
 
     def play(self):
-        print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!{
-              Style.RESET_ALL}")
+        print(f"{Fore.CYAN}Game is starting! There are three (3) rounds to roll dices!{Style.RESET_ALL}")
         for round in range(1, 4):
             print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
