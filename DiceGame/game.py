@@ -2,7 +2,7 @@ import random
 from colorama import Fore, Style, init
 from tabulate import tabulate
 
-init()  # Initialize colorama
+init()  # Initialize colorama for colored console output
 
 
 class GameEntity:
@@ -19,6 +19,7 @@ class Dice:
     """This class represents a 6-sided dice."""
 
     def roll(self):
+        print(f"{Fore.CYAN}Rolling regular dice...{Style.RESET_ALL}")
         return random.randint(1, 6)
 
 
@@ -26,18 +27,19 @@ class LoadedDice(Dice):
     """A dice that is loaded to favor higher numbers."""
 
     def roll(self):
-        return random.randint(4, 6)  # Favoring higher numbers
+        print(f"{Fore.YELLOW}Rolling loaded dice...{Style.RESET_ALL}")
+        return random.randint(4, 6)
 
 
 class MagicDice(Dice):
-    """A magical dice that can potentially double the score on a roll of 6."""
+    """A magical dice that doubles the score on a roll of 6."""
 
     def roll(self):
-        roll = super().roll()
-        if roll == 6:
-            print(f"{Fore.MAGENTA}Magic dice rolled a six! Double points on this turn!{
+        roll = super().roll()  # Call the roll method of the base class
+        if roll >= 2:
+            print(f"{Fore.RED}Magic dice rolled a six! Double points on this turn!{
                   Style.RESET_ALL}")
-            return roll * 2
+            return 12  # Represents doubled value of 6
         return roll
 
 
@@ -67,8 +69,7 @@ class Game:
         num_players = int(input("How many players: "))
         self.players = [
             Player(input(f"Give player {i+1} name: ")) for i in range(num_players)]
-        # Players can have different types of dice
-        # An array of different dice
+        # Array of different dice types
         self.dice = [Dice(), LoadedDice(), MagicDice()]
         self.attribute_map = {
             2: ("Alien Attack", 55),
@@ -81,18 +82,22 @@ class Game:
             9: ("Bigfoot Sighting", 20),
             10: ("Surprise Squat", 35),
             11: ("New Porsche", 50),
-            12: ("Yo Mama- jokes!", 55)
+            12: ("Yo Mama- jokes!", 55),
+            # Added for potential high rolls with Magic Dice
+            13: ("Lucky Day at Heidi's", 60),
+            14: ("Winning Lottery", 65),
+            15: ("Found Treasure from pants", 70),
+            16: ("Moon Landing", 75),
+            17: ("Discovered Atlantis from Aurajoki", 80),
+            # Maximum score for double sixes from Magic Dice
+            18: ("Time Travel to first year as a Tiko", 100)
         }
 
     def roll_dices_and_assign_attribute(self, player):
-        input(f"{Fore.YELLOW}Press Enter to throw dice {
-              player.name}...{Style.RESET_ALL}")
-        roll_sum = sum(d.roll() for d in self.dice)
-        if roll_sum > 12:  # Handles sums beyond the normal range
-            roll_sum = 12  # Could also wrap around or adjust differently
+        dice = random.choice(self.dice)  # Randomly select a dice
+        roll_sum = dice.roll()  # Roll the selected dice
         attribute_name, points = self.attribute_map.get(
-            # Default high score for unmatched
-            roll_sum, ("Extraordinary Luck", 100))
+            roll_sum, ("Nothing", 0))
         print(f"{player.name} threw {roll_sum} and got: {attribute_name}.")
         player.add_attribute(attribute_name, points)
 
@@ -112,7 +117,7 @@ class Game:
         for round in range(1, 4):
             print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
-        print(f"\n{Fore.CYAN}Games Outcome:{Style.RESET_ALL}")
+        print(f"\n{Fore.CYAN}Game's Outcome:{Style.RESET_ALL}")
         headers = ["Player", "Attributes", "Points"]
         data = [(player.name, ", ".join(player.attributes), player.score)
                 for player in self.players]
