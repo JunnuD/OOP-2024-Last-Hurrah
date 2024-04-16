@@ -141,7 +141,8 @@ class Game:
         headers = ["Player", "Attributes", "Points"]
 
         # Sort players based on their scores in descending order
-        data = [(player.name, ", ".join(player.attributes), player.score) for player in self.players]
+        data = sorted([(player.name, ", ".join(player.attributes), player.score) for player in self.players],
+                        key=lambda x: x[2], reverse=True)
         print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
 
         # Announce winners
@@ -150,3 +151,4 @@ class Game:
         else:
             print(f"{Fore.CYAN}The winner is {winners[0]} with {max_score} points!{Style.RESET_ALL}\n")
 
+        
