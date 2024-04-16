@@ -128,9 +128,25 @@ class Game:
         for round in range(1, 4):
             print(f"{Fore.MAGENTA}Round {round} starting:{Style.RESET_ALL}")
             self.play_round()
+
+        # Determine the highest score
+        max_score = max(player.score for player in self.players)
+
+        # Find all players who have the max score (supports multiple winners in case of a tie)
+        winners = [player.name for player in self.players if player.score == max_score]
+
+        # Announce the outcome of the game
+    
         print(f"\n{Fore.CYAN}Game's Outcome:{Style.RESET_ALL}")
         headers = ["Player", "Attributes", "Points"]
+
         # Sort players based on their scores in descending order
-        data = sorted([(player.name, ", ".join(player.attributes), player.score) for player in self.players],
-                      key=lambda x: x[2], reverse=True)
+        data = [(player.name, ", ".join(player.attributes), player.score) for player in self.players]
         print(tabulate(data, headers=headers, tablefmt="fancy_grid"))
+
+        # Announce winners
+        if len(winners) > 1:
+            print(f"{Fore.CYAN}It's a tie! The winners are: {', '.join(winners)} with {max_score} points each!{Style.RESET_ALL}\n")
+        else:
+            print(f"{Fore.CYAN}The winner is {winners[0]} with {max_score} points!{Style.RESET_ALL}\n")
+
