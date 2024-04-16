@@ -104,7 +104,10 @@ class Game:
             16: ("Moon Landing", 75),
             17: ("Discovered Atlantis from Aurajoki", 80),
             18: ("Time Travel back to the 90's", 100)
-        }
+        }  
+        
+        # Here is the list of all attributes and points included with them
+
 
     def roll_dices_and_assign_attribute(self, player):
         input(f"{Fore.YELLOW}Press Enter to throw dices for {player.name}...{Style.RESET_ALL}")
