@@ -18,14 +18,14 @@ Subject wil be dice roll game to add all of the above mentioned aspects.
 a. Multiple classes                                                     ✅
 b. Multiple modules                                                     ✅
 c. Multiple instances of a class                                        ✅
-d. At least one part of the work modeled using UML sequence diagram     ❌
-e. At least one part of the work modeled using flow chart               ❌
-f. At least one part of the work modeled using UML class diagram        ❌
+d. At least one part of the work modeled using UML sequence diagram     ✅
+e. At least one part of the work modeled using flow chart               ✅
+f. At least one part of the work modeled using UML class diagram        ✅
 g. Some interaction/relationship between classes (association)          ✅
 h. Inheritance                                                          ✅
 i. Objects passed as function arguments                                 ✅
 j. Integration of data structure (list, tuple, dictionary, etc.)        ✅
-k. Polymorphism                                                         ❌
+k. Polymorphism                                                         ✅
 
 Others
 a. Adhere to the Style guide for coding consistency                     ✅
@@ -36,7 +36,7 @@ e. Conduct testing and evidence of testing                              ✅
 
 That is total of 30 points
 
-In addition you will get 10 points from the presentation                ❌  WILL DO THIS!
+In addition you will get 10 points from the presentation                ✅  WILL DO THIS!
 Total is 40 points
 
 
