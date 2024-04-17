@@ -18,8 +18,8 @@ Subject wil be dice roll game to add all of the above mentioned aspects.
 a. Multiple classes                                                     ✅
 b. Multiple modules                                                     ✅
 c. Multiple instances of a class                                        ✅
-d. At least one part of the work modeled using UML sequence diagram     ❌
-e. At least one part of the work modeled using flow chart               ❌
+d. At least one part of the work modeled using UML sequence diagram     ✅
+e. At least one part of the work modeled using flow chart               ✅
 f. At least one part of the work modeled using UML class diagram        ✅
 g. Some interaction/relationship between classes (association)          ✅
 h. Inheritance                                                          ✅
